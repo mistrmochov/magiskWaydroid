@@ -12,8 +12,8 @@ Use this scripts if the script from nitanmarcel doesn't work. This script copies
 git clone https://github.com/mistrmochov/magiskWaydroid
 chmod +x magiskinstall.sh
 ./magiskinstall.sh (DO NOT RUN AS ROOT OR SUDO, or it wont work)
-then press y and you're done
 ```
+ then press y and you're done
  For removal use magiskremove.sh
 
  **Compatibility**
