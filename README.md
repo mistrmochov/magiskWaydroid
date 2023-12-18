@@ -22,6 +22,7 @@ chmod +x magiskinstall.sh
  For removal use magiskremove.sh
  
  With magisk installed, Waydroid usually boots longer and in first boot after you install magisk, It can take few seconds untill Magisk manager pops up, So if it's not in the applications, just wait.
+ Also please do not update Magisk or you will lose root.
  
  **Compatibility**
  
