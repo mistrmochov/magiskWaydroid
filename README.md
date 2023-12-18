@@ -9,6 +9,7 @@ Small and quick scripts, that puts finished magisk files to waydroid directory. 
  Note: With this script you get only one version of Magisk, which is Magisk Delta 26.3 (Not Kitsune Mask). Magisk Delta fully works and you can install all the sweet stuff and modules you want.
 
  **Install instructions**
+ First please make sure, that your Waydroid is installed and initialized!
  ```shell
 git clone https://github.com/mistrmochov/magiskWaydroid
 chmod +x magiskinstall.sh
@@ -16,6 +17,7 @@ chmod +x magiskinstall.sh
 ```
  then press y and you're done
  For removal use magiskremove.sh
-
+ With magisk installed, Waydroid usually boots longer and in first boot after you install magisk, It can take few seconds untill Magisk manager pops up, So if it's not in the applications, just wait.
+ 
  **Compatibility**
  These files are for x86_64 architecture, so for arm It propably won't work.
