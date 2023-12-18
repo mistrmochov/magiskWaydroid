@@ -15,7 +15,7 @@ Small and quick scripts, that puts finished magisk files to waydroid directory. 
  ```shell
 git clone https://github.com/mistrmochov/magiskWaydroid
 chmod +x magiskinstall.sh
-./magiskinstall.sh (DO NOT RUN AS ROOT OR SUDO, or it wont work)
+./magiskinstall.sh (DO NOT RUN AS ROOT OR SUDO, or it wont work, but when you are prompted for sudo password put it there of course!)
 ```
  then press y and you're done
  
