@@ -9,6 +9,13 @@ Small and quick scripts, that puts finished magisk files to waydroid directory. 
  and I made script based on this so others can benefit. 
  Note: With this script you get only one version of Magisk, which is Magisk Delta 26.3 (Not Kitsune Mask). Magisk Delta fully works and you can install all the sweet stuff and modules you want.
 
+ **Requirements**
+
+ waydroid
+ git
+ tar
+ gzip
+
  **Install instructions**
  
  First please make sure, that your Waydroid is installed and initialized!
