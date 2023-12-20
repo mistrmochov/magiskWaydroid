@@ -17,6 +17,7 @@ sudo rm -rf ~/.local/share/waydroid/data/data/io.github.huskydg.magisk.png
 sudo rm -rf /var/lib/waydroid/overlay/sbin/*
 sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc
 sudo gzip -dk /var/lib/waydroid/overlay/system/etc/init/bootanim.rc.gz
+sudo rm -rf /var/lib/waydroid/overlay_rw/system/sbin/.magisk
 sudo systemctl start waydroid-container.service
 echo "Magisk removed, goodbye!"
 else
