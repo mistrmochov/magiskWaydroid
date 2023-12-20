@@ -26,12 +26,14 @@ git clone https://github.com/mistrmochov/magiskWaydroid
 chmod +x magiskinstall.sh
 ./magiskinstall.sh (DO NOT RUN AS ROOT OR SUDO, or it wont work, but when you are prompted for sudo password put it there of course!)
 ```
- then press y and you're done
+ then press y
+
+ After script installation go to magisk application and proceed installation to system partition. Then you're done.
  
  For removal use magiskremove.sh
  
  With magisk installed, Waydroid usually boots longer and in first boot after you install magisk, It can take few seconds untill Magisk manager pops up, So if it's not in the applications, just wait.
- Also please do not update Magisk or you will lose root.
+ Also please do not update Magisk to Kitsune Mask or you will lose root.
  
  **Compatibility**
  
