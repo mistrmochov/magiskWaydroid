@@ -25,6 +25,7 @@ sudo rm -rf /var/lib/waydroid/overlay/sbin/*
 sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc
 sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc.gz
 sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/magisk
+sudo rm -rf /var/lib/waydroid/overlay_rw/system/sbin/.magisk
 sleep 0.5
 echo "Downloading magisk"
 wget https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk.tar.gz
