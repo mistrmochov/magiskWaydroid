@@ -19,6 +19,8 @@ Small and quick scripts, that puts finished magisk files to waydroid directory. 
  **Install instructions**
  
  First please make sure, that your Waydroid is installed and initialized!
+
+ If you have been installing magisk from nitanmarcel script, make sure you run: "sudo waydroid_magisk remove", before installing this script! Althought, now this script should remove all conflicting files.
  ```shell
 git clone https://github.com/mistrmochov/magiskWaydroid
 chmod +x magiskinstall.sh
