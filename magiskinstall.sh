@@ -46,7 +46,6 @@ echo "Installation has finished, enjoy Magisk!"
 elif [ $a = "n" ]
 then
 echo "Aborting!"
-mkdir no
 else
 echo "Aboring!"
 fi
