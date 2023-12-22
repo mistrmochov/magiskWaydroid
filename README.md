@@ -28,7 +28,7 @@ chmod +x magiskinstall.sh
 ```
  then press y
 
- After script installation go to magisk application and proceed installation to system partition. Then you're done.
+ IMPORTANT: After script installation go to magisk application and proceed installation to system partition or It might not work properly, but do not update the application. Then you're done.
  
  For removal use magiskremove.sh
  
