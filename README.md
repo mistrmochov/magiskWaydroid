@@ -1,5 +1,6 @@
 # magiskWaydroid
 Small and quick scripts, that puts finished magisk files to waydroid directory. Fully working Magisk Delta!!
+Please kindly read everything here and follow insctructions, or It might not work properly!
 
 ![installedmagisk](https://magiskwaydroid.fra1.digitaloceanspaces.com/magiskimage.png)
 
