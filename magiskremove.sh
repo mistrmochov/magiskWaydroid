@@ -39,6 +39,8 @@ sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc
 sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc.gz
 sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/magisk 
 sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/addon.d
+sudo rm -rf /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy
+sudo gzip -dk /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy.gz
 sudo systemctl start waydroid-container.service
 echo "Magisk removed, goodbye!"
 else
