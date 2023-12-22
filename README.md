@@ -20,6 +20,7 @@ Please kindly read everything here and follow insctructions, or It might not wor
  **Install instructions**
  
  First please make sure, that your Waydroid is installed and initialized!
+ If you have fresh waydroid install and your Waydroid has never started, please start up the waydroid. (data folder has to exist!)
 
  If you have been installing magisk from nitanmarcel script, make sure you run: "sudo waydroid_magisk remove", before installing this script! Althought, now this script should remove all conflicting files.
  ```shell
