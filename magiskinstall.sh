@@ -1,11 +1,27 @@
 #!/bin/bash
+loope=true
+a=""
+clear
 echo "Hi, welcome to simple Magisk Delta installer on Waydroid"
 sleep 1
 echo "NOTICE: This script copies preinstalled magisk files. I created this, because for lot of people the other scripts doesn't work!
 I will also note, that this is not Kitsune Mask, but last release Magisk Delta!"
 sleep 1
-echo "Do you really want to install Magisk Delta on Waydroid?(y/n)"
-read a
+while [ $loope = true ]
+do
+read -p "Do you really want to install Magisk Delta on Waydroid? (y/n):" a
+if [ $a = "y" ]
+then
+loope=false
+elif [ $a = "n" ]
+then
+loope=false
+else
+clear
+loope=true
+echo "No option selected, try again!"
+fi
+done
 if [ $a = "y" ]
 then
 waydroid session stop
@@ -25,7 +41,12 @@ sudo rm -rf /var/lib/waydroid/overlay/sbin/*
 sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc
 sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc.gz
 sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/magisk
+sudo rm -rf /var/lib/waydroid/overlay/system/addon.d
 sudo rm -rf /var/lib/waydroid/overlay_rw/system/sbin/.magisk
+sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc
+sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc.gz
+sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/magisk
+sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/addon.d
 sleep 0.5
 echo "Downloading magisk"
 wget https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk.tar.gz
@@ -42,10 +63,8 @@ sudo rm -rf magisk magisk.tar.gz
 sudo systemctl start waydroid-container.service
 echo "Starting waydroid-container.service"
 sleep 0.5
-echo "Installation has finished, enjoy Magisk!"
+echo "Installation has finished, now start up waydroid and then please install magisk in system partition in the magisk app, enjoy Magisk!"
 elif [ $a = "n" ]
 then
 echo "Aborting!"
-else
-echo "Aboring!"
 fi
