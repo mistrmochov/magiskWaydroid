@@ -13,6 +13,8 @@ Please kindly read everything here and follow insctructions, or It might not wor
  Please keep in mind, that this script will propably not work on all system configuration. For example, these files are only for x86_64 architecture, for which these files were generated! But I will try my best to make the script full complete, It 
  was meant as temporary solution for replacing other scripts.
 
+ Also please, If you have an idea, how to make scripts better and accessible to more people, feel free to pull requests, I will be happy to make the script better.
+
  **Requirements**
 
  waydroid
