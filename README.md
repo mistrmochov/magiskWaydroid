@@ -10,7 +10,8 @@ Please kindly read everything here and follow insctructions, or It might not wor
  and I made script based on this so others can benefit. 
  Note: With this script you get only one version of Magisk, which is Magisk Delta 26.3 (Not Kitsune Mask). Magisk Delta fully works and you can install all the sweet stuff and modules you want.
 
- Please keep in mind, that this script will propably not work on all system configuration. For example, these files are only for x86_64 architecture, for which these files were generated!
+ Please keep in mind, that this script will propably not work on all system configuration. For example, these files are only for x86_64 architecture, for which these files were generated! But I will try my best to make the script full complete, It 
+ was meant as temporary solution for replacing other scripts.
 
  **Requirements**
 
