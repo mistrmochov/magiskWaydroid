@@ -1,12 +1,23 @@
 #!/bin/bash
-loope=true
+loope=false
 a=""
+SYSTEM=$(cat /var/lib/waydroid/waydroid.cfg | grep images_path | cut -d' ' -f 3)/system.img
+VENDOR=$(cat /var/lib/waydroid/waydroid.cfg | grep images_path | cut -d' ' -f 3)/vendor.img
+ARCH=$(cat /var/lib/waydroid/waydroid.cfg | grep arch | cut -d' ' -f 3)
 clear
 echo "Hi, welcome to simple Magisk Delta installer on Waydroid"
 sleep 1
 echo "NOTICE: This script copies preinstalled magisk files. I created this, because for lot of people the other scripts doesn't work!
 I will also note, that this is not Kitsune Mask, but last release Magisk Delta!"
 sleep 1
+if [ $ARCH = "x86_64" ]
+then
+loope=true
+else
+echo "Sorry but," $ARCH "is not supported yet, by this script!"
+loope=false
+a="n"
+fi
 while [ $loope = true ]
 do
 read -p "Do you really want to install Magisk Delta on Waydroid? (y/n):" a
@@ -49,8 +60,14 @@ sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/magisk
 sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/addon.d
 sudo rm -rf /var/lib/waydroid/overlay_rw/vendor/etc/selinux/*
 sleep 0.5
+echo "Resizing images"
+sudo e2fsck -yf $SYSTEM
+sudo resize2fs $SYSTEM 3G
+sudo e2fsck -yf $VENDOR
+sudo resize2fs $VENDOR 1G
+sleep 0.5
 echo "Downloading magisk"
-wget https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk.tar.gz
+wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk0.6.tar.gz -O magisk.tar.gz
 sleep 0.5
 echo "Unpacking magisk"
 sudo tar -xf magisk.tar.gz
@@ -60,7 +77,7 @@ sudo cp -r magisk/overlay /var/lib/waydroid/
 sudo cp -r magisk/overlay_rw /var/lib/waydroid/
 sudo cp -r magisk/data ~/.local/share/waydroid/
 sleep 0.5
-sudo rm -rf magisk magisk.tar.gz
+sudo rm -rf magisk magisk.tar.gz magisk0.6.tar.gz
 sudo systemctl start waydroid-container.service
 echo "Starting waydroid-container.service"
 sleep 0.5
