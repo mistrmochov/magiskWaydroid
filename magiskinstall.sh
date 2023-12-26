@@ -81,7 +81,7 @@ sudo rm -rf magisk magisk.tar.gz magisk0.6.tar.gz
 sudo systemctl start waydroid-container.service
 echo "Starting waydroid-container.service"
 sleep 0.5
-echo "Installation has finished, now start up waydroid and then please install magisk in system partition in the magisk app, enjoy Magisk!"
+echo "Installation has finished, now start up waydroid and after waydroid fully boots and If magisk was successfully installed then just simply reboot your Waydroid or proceed direct install to system through Magisk app. Enjoy Magisk <3"
 elif [ $a = "n" ]
 then
 echo "Aborting!"
