@@ -35,7 +35,7 @@ chmod +x magiskinstall.sh
 ```
  then press y
 
- IMPORTANT: After script installation go to magisk application and proceed installation to system partition or It might not work properly, but do not update the application. Or you can just simply restart waydroid after the boot. Then you're done.
+ IMPORTANT: After script installation start up the Waydroid and after It boots up, check If Magisk was installed, If yes then please restart your Waydroid to complete the installation proccess or you can also proceed with direct install to system through Magisk app.
  
  For removal use magiskremove.sh
  
