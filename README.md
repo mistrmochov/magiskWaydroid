@@ -44,7 +44,7 @@ chmod +x magiskinstall.sh
  
  **Compatibility**
  
- These files are for x86_64 architecture, so for arm It propably won't work.
+ These files are for x86_64 architecture, so If you have any other architecture my script will simply stop itself.
  
  If you're using Archlinux based distros you need linux-xanmod-anbox kernel and its header!
 
