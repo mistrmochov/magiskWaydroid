@@ -1,4 +1,7 @@
 # magiskWaydroid
+
+Changelog (V - 0.7): Added support for runit init system, but on voidlinux magisk doesn't work, because of some incompatibility with magisk busybox, I'm working on some solution!
+
 Small and quick script, that puts finished magisk files to waydroid directory. Fully working Magisk Delta!!
 Please kindly read everything here and follow insctructions, or It might not work properly!
 
