@@ -1,3 +1,5 @@
+#!/bin/bash
+ps -p 1 -o command > init.txt
 loope=true
 a=""
 while [ $loope = true ]
@@ -6,6 +8,8 @@ read -p "Do you really want to uninstall Magisk Delta from waydroid?(y/n)" a
 if [ $a = "y" ]
 then
 loope=false
+touch init.txt
+ps -p 1 -o command > init.txt
 elif [ $a = "n" ]
 then
 loope=false
@@ -19,7 +23,12 @@ if [ $a = "y" ]
 then
 waydroid session stop
 sudo waydroid container stop
+if grep -Fxq "runit" init.txt
+then
+sudo sv down waydroid-container
+else
 sudo systemctl stop waydroid-container.service
+fi
 echo "Stopping waydroid!"
 sleep 0.5
 sudo rm -rf ~/.local/share/waydroid/data/adb/lspd
@@ -41,8 +50,14 @@ sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/magisk
 sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/addon.d
 sudo rm -rf /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy
 sudo gzip -dk /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy.gz
+if grep -Fxq "runit" init.txt
+then
+sudo sv up waydroid-container
+else
 sudo systemctl start waydroid-container.service
+fi
 echo "Magisk removed, goodbye!"
+rm -rf init.txt
 else
 echo "Aborting!"
 fi
