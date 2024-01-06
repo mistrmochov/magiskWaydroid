@@ -24,6 +24,8 @@ read -p "Do you really want to install Magisk Delta on Waydroid? (y/n):" a
 if [ $a = "y" ]
 then
 loope=false
+touch init.txt
+ps -p 1 -o command > init.txt
 elif [ $a = "n" ]
 then
 loope=false
@@ -37,7 +39,12 @@ if [ $a = "y" ]
 then
 waydroid session stop
 sudo waydroid container stop
+if grep -Fxq "runit" init.txt
+then
+sudo sv down waydroid-container
+else
 sudo systemctl stop waydroid-container.service
+fi
 echo "Stopping waydroid!"
 sleep 0.5
 echo "Removing any previous installation of magisk, excluding modules!"
@@ -67,7 +74,7 @@ sudo e2fsck -yf $VENDOR
 sudo resize2fs $VENDOR 1G
 sleep 0.5
 echo "Downloading magisk"
-wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk0.6.tar.gz -O magisk.tar.gz
+wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk0.7.tar.gz -O magisk.tar.gz
 sleep 0.5
 echo "Unpacking magisk"
 sudo tar -xf magisk.tar.gz
@@ -77,11 +84,17 @@ sudo cp -r magisk/overlay /var/lib/waydroid/
 sudo cp -r magisk/overlay_rw /var/lib/waydroid/
 sudo cp -r magisk/data ~/.local/share/waydroid/
 sleep 0.5
-sudo rm -rf magisk magisk.tar.gz magisk0.6.tar.gz
+sudo rm -rf magisk magisk.tar.gz magisk0.7.tar.gz
+if grep -Fxq "runit" init.txt
+then
+sudo sv up waydroid-container
+else
 sudo systemctl start waydroid-container.service
+fi
 echo "Starting waydroid-container.service"
 sleep 0.5
 echo "Installation has finished, now start up waydroid and after waydroid fully boots and If magisk was successfully installed then just simply reboot your Waydroid or proceed direct install to system through Magisk app. Enjoy Magisk <3"
+rm -rf init.txt
 elif [ $a = "n" ]
 then
 echo "Aborting!"
