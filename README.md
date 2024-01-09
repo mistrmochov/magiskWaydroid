@@ -1,8 +1,10 @@
 # magiskWaydroid
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 Changelog (V - 0.7): Added support for runit init system, but on voidlinux magisk doesn't work, because of some incompatibility with magisk busybox, I'm working on some solution!
 
 Changelog (V - 0.8): Added arm64 support, but I don't have any arm device, So I was not able to test It. So If you anyone will be using arm version, please let me know, If it works :)
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 Small and quick script, that puts finished magisk files to waydroid directory. Fully working Magisk Delta!!
 Please kindly read everything here and follow insctructions, or It might not work properly!
@@ -14,10 +16,7 @@ Please kindly read everything here and follow insctructions, or It might not wor
  Use this script if the script from nitanmarcel doesn't work. This script copies "preinstalled" magisk to your waydroid directory. These files are generated from the script, that I mentioned before and I made script based on this so others can benefit. 
  Note: With this script you get only one version of Magisk, which is Magisk Delta 26.3 (Not Kitsune Mask). Magisk Delta fully works and you can install all the sweet stuff and modules you want.
 
- Please keep in mind, that this script will propably not work on all system configuration. For example, these files are only for x86_64 architecture, for which these files were generated! But I will try my best to make the script full complete, It 
- was meant as temporary solution for replacing other scripts.
-
- Also please, If you have an idea, how to make scripts better and accessible to more people, feel free to pull requests, I will be happy to make the script better.
+ Please, If you have an idea, how to make scripts better and accessible to more people, feel free to pull requests, I will be happy to make the script better.
 
  **Requirements**
 
@@ -48,7 +47,7 @@ chmod +x magiskinstall.sh
  
  **Compatibility**
  
- These files are for x86_64 architecture, so If you have any other architecture my script will simply stop itself.
+ Now this script supports x86_64 and arm64 archs.
  
  If you're using Archlinux based distros you need linux-xanmod-anbox kernel and its header!
 
