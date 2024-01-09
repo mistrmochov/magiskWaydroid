@@ -10,6 +10,8 @@ function prep() {
     sleep 0.3
     if [ $ARCH = "x86_64" ]; then
         loope=true
+    elif [ $ARCH = "arm64" ]; then
+        loope=true
     else
         echo "Sorry but," $ARCH "is not supported yet, by this script!"
         loope=false
@@ -77,17 +79,26 @@ function resize_images() {
 
 function install_magisk() {
     echo "Downloading magisk"
-    wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk0.7.tar.gz -O magisk.tar.gz
+    if [ $ARCH = "arm64" ]; then
+        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magiskarm64_0.8.tar.gz -O magisk.tar.gz
+    else
+        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk_0.8.tar.gz -O magisk.tar.gz
+    fi
     sleep 0.3
     echo "Unpacking magisk"
     sudo tar -xf magisk.tar.gz
     sleep 0.3
     echo "Copying files!"
-    sudo cp -r magisk/overlay /var/lib/waydroid/
-    sudo cp -r magisk/overlay_rw /var/lib/waydroid/
-    sudo cp -r magisk/data ~/.local/share/waydroid/
+    if [ $ARCH = "x86_64" ]; then
+        sudo cp -r magisk/overlay /var/lib/waydroid/
+        sudo cp -r magisk/overlay_rw /var/lib/waydroid/
+        sudo cp -r magisk/data ~/.local/share/waydroid/
+    else
+        sudo cp -r magisk/overlay /var/lib/waydroid/
+        sudo cp -r magisk/data ~/.local/share/waydroid/
+    fi
     sleep 0.3
-    sudo rm -rf magisk magisk.tar.gz magisk0.7.tar.gz
+    sudo rm -rf magisk magisk.tar.gz
 }
 
 function waydroid_up() {
