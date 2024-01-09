@@ -49,5 +49,5 @@ chmod +x magiskinstall.sh
  
  Now this script supports x86_64 and arm64 archs.
  
- If you're using Archlinux based distros you need linux-xanmod-anbox kernel and its header!
+ If you're using Archlinux based distros you need linux-xanmod-anbox kernel and its header and also you need to put 'psi=1' (without quotes) to your kernel cmdline or Magisk won't work at all!
 
