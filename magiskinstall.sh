@@ -82,7 +82,7 @@ function install_magisk() {
     if [ $ARCH = "arm64" ]; then
         wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magiskarm64_0.8.tar.gz -O magisk.tar.gz
     else
-        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk_0.8.tar.gz -O magisk.tar.gz
+        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk_0.8.1.tar.gz -O magisk.tar.gz
     fi
     sleep 0.3
     echo "Unpacking magisk"
