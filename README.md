@@ -37,13 +37,20 @@ Please kindly read everything here and follow insctructions, or It might not wor
  ```shell
 git clone https://github.com/mistrmochov/magiskWaydroid
 chmod +x magiskinstall.sh
-./magiskinstall.sh (DO NOT RUN AS ROOT OR SUDO, or it wont work, but when you are prompted for sudo password put it there of course!)
+./magiskinstall.sh ("DO NOT RUN AS ROOT OR SUDO, or it wont work, but when you are prompted for sudo password put it there of course!")
 ```
- then press y
+ Option 1 is for normal Magisk Delta install.
+
+ Option 2 is for installing Magisk together with mentioned modules.
+
 
  IMPORTANT: After script installation start up the Waydroid and after It boots up, check If Magisk was installed, If yes then please restart your Waydroid to complete the installation proccess or you can also proceed with direct install to system through Magisk app.
  
  For removal use magiskremove.sh
+ 
+ Option 1 removes Magisk.
+
+ Option 2 resets Magisk to its original state.
  
  With magisk installed, Waydroid usually boots longer and in first boot after you install magisk, It can take few seconds untill Magisk manager pops up, So if it's not in the applications, just wait.
  Also please do not update Magisk to Kitsune Mask or you will lose root.
