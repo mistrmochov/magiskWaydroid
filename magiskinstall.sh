@@ -21,12 +21,22 @@ function prep() {
 
 function promt() {
     while [ $loope = true ]; do
-        read -p "Do you really want to install Magisk Delta on Waydroid? (y/n):" a
-        if [ $a = "y" ]; then
+        echo "Do you want to install Magisk Delta on Waydroid? (1)"
+        echo "Do you want to install Magisk Delta preinstalled with LSposed and Builtin busybox? (2)"
+        echo "Abort (3)"
+        read -p "Make a choice (choose number):" a
+        if [[ $ARCH = "arm64" && $a = "2" ]]; then
+            echo "Sorry the option with modules is only for x86_64 arch, proceeding with normal Magisk Delta install!"
+            a="1"
+        else
+            echo "Selected option: $a"
+            sleep 0.3
+        fi
+        if [[ $a = "1" || $a = "2" ]]; then
             loope=false
             touch init.txt
             ps -p 1 -o command >init.txt
-        elif [ $a = "n" ]; then
+        elif [ $a = "3" ]; then
             loope=false
         else
             clear
@@ -48,7 +58,7 @@ function waydroid_down() {
 }
 
 function rm_magisk() {
-    echo "Removing any previous installation of magisk, excluding modules!"
+    echo "Removing any previous installation of Magisk"
     sudo rm -rf ~/.local/share/waydroid/data/adb/lspd
     sudo rm -rf ~/.local/share/waydroid/data/adb/magisk
     sudo rm -rf ~/.local/share/waydroid/data/adb/magisk.db
@@ -82,17 +92,25 @@ function install_magisk() {
     if [ $ARCH = "arm64" ]; then
         wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magiskarm64_0.8.tar.gz -O magisk.tar.gz
     else
-        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk_0.8.1.tar.gz -O magisk.tar.gz
+        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk_0.8.4.tar.gz -O magisk.tar.gz
     fi
     sleep 0.3
-    echo "Unpacking magisk"
+    if [ $a = "2" ]; then
+        echo "Unpacking magisk with modules!"
+    else
+        echo "Unpacking magisk"
+    fi
     sudo tar -xf magisk.tar.gz
     sleep 0.3
     echo "Copying files!"
     if [ $ARCH = "x86_64" ]; then
         sudo cp -r magisk/overlay /var/lib/waydroid/
         sudo cp -r magisk/overlay_rw /var/lib/waydroid/
-        sudo cp -r magisk/data ~/.local/share/waydroid/
+        if [ $a = "2" ]; then
+            sudo cp -r magisk/data_modules/* ~/.local/share/waydroid/data/
+        else
+            sudo cp -r magisk/data ~/.local/share/waydroid/
+        fi
     else
         sudo cp -r magisk/overlay /var/lib/waydroid/
         sudo cp -r magisk/data ~/.local/share/waydroid/
@@ -111,7 +129,7 @@ function waydroid_up() {
 }
 
 function install() {
-    if [ $a = "y" ]; then
+    if [[ $a = "1" || $a = "2" ]]; then
         waydroid_down
         sleep 0.3
         rm_magisk
@@ -123,7 +141,7 @@ function install() {
         sleep 0.5
         echo "Installation has finished, now start up waydroid and after waydroid fully boots and If magisk was successfully installed then just simply reboot your Waydroid or proceed direct install to system through Magisk app. Enjoy Magisk <3"
         rm -rf init.txt
-    elif [ $a = "n" ]; then
+    elif [ $a = "3" ]; then
         echo "Aborting!"
     fi
 }
