@@ -1,9 +1,12 @@
 # magiskWaydroid
 __________________________________________________________________________________________________________________________________________________________________________________________
+Changelog:
 
-Changelog (V - 0.7): Added support for runit init system, but on voidlinux magisk doesn't work, because of some incompatibility with magisk busybox, I'm working on some solution!
+(V - 0.7): Added support for runit init system, but on voidlinux magisk doesn't work, because of some incompatibility with magisk busybox, I'm working on some solution!
 
-Changelog (V - 0.8): Added arm64 support, but I don't have any arm device, So I was not able to test It. So If you anyone will be using arm version, please let me know, If it works :)
+(V - 0.8): Added arm64 support, but I don't have any arm device, So I was not able to test It. So If you anyone will be using arm version, please let me know, If it works :)
+
+(V - 0.8.4): Added option to install Magisk together with lsposed and magisk builtinbusybox modules. And also in magiskremove script, added feature to restore Magisk to its original state and remove all modules.
 __________________________________________________________________________________________________________________________________________________________________________________________
 
 Small and quick script, that puts finished magisk files to waydroid directory. Fully working Magisk Delta!!
