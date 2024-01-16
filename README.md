@@ -24,9 +24,10 @@ Please kindly read everything here and follow insctructions, or It might not wor
  **Requirements**
 
  waydroid
- git
- tar
- gzip
+ git,
+ tar,
+ gzip,
+ wget
 
  **Install instructions**
  
