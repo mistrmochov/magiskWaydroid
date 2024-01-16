@@ -90,9 +90,9 @@ function resize_images() {
 function install_magisk() {
     echo "Downloading magisk"
     if [ $ARCH = "arm64" ]; then
-        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magiskarm64_0.8.tar.gz -O magisk.tar.gz
+        wget -q https://storage.googleapis.com/magiskwaydroid/magiskarm64_0.8.tar.gz -O magisk.tar.gz
     else
-        wget -q https://magiskwaydroid.fra1.digitaloceanspaces.com/magisk_0.8.4.tar.gz -O magisk.tar.gz
+        wget -q https://storage.googleapis.com/magiskwaydroid/magisk_0.8.4.tar.gz -O magisk.tar.gz
     fi
     sleep 0.3
     if [ $a = "2" ]; then
