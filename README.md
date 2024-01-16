@@ -23,7 +23,7 @@ Please kindly read everything here and follow insctructions, or It might not wor
 
  **Requirements**
 
- waydroid
+ waydroid,
  git,
  tar,
  gzip,
