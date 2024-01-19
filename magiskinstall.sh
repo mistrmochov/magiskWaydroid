@@ -15,7 +15,7 @@ function prep() {
     else
         echo "Sorry but," $ARCH "is not supported yet, by this script!"
         loope=false
-        a="n"
+        a="3"
     fi
 }
 
