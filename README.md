@@ -12,7 +12,7 @@ ________________________________________________________________________________
 Small and quick script, that puts finished magisk files to waydroid directory. Fully working Magisk Delta!!
 Please kindly read everything here and follow insctructions, or It might not work properly!
 
-![installedmagisk](https://magiskwaydroid.fra1.digitaloceanspaces.com/magiskimage.png)
+![installedmagisk](https://storage.googleapis.com/mistrmochov/installedmagisk.png)
 
 **Purpose of this script.**
 
