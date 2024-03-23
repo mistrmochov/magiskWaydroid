@@ -47,7 +47,7 @@ chmod +x magiskinstall.sh
 
  IMPORTANT: After script installation start up the Waydroid and after It boots up, check If Magisk was installed, If yes then please restart your Waydroid to complete the installation proccess or you can also proceed with direct install to system through Magisk app.
  
- For removal use magiskremove.sh
+ For removal use magiskreset.sh
  
  Option 1 removes Magisk.
 
@@ -60,5 +60,5 @@ chmod +x magiskinstall.sh
  
  Now this script supports x86_64 and arm64 archs.
  
- If you're using Archlinux based distros you need linux-xanmod-anbox kernel and its header and also you need to put 'psi=1' (without quotes) to your kernel cmdline or Magisk won't work at all!
+ If you're using Archlinux based distros you need linux-xanmod-anbox kernel and its header and also you need to put 'psi=1' (without quotes) to your kernel cmdline or Magisk won't work at all! You can compile and install this kernel from AUR: https://aur.archlinux.org/packages/linux-xanmod-anbox , https://aur.archlinux.org/packages/linux-xanmod-anbox-headers . Or you can install compiled kernel from chaotic aur chinese repository: https://archlinux.pkgs.org/rolling/archlinuxcn-x86_64/linux-xanmod-anbox-6.7.10-1-x86_64.pkg.tar.zst.html , https://archlinux.pkgs.org/rolling/archlinuxcn-x86_64/linux-xanmod-anbox-headers-6.7.10-1-x86_64.pkg.tar.zst.html .
 
