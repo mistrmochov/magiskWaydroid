@@ -100,23 +100,28 @@ function install_magisk() {
     else
         echo "Unpacking magisk"
     fi
-    sudo tar -xf magisk.tar.gz
-    sleep 0.3
-    echo "Copying files!"
-    if [ $ARCH = "x86_64" ]; then
-        sudo cp -r magisk/overlay /var/lib/waydroid/
-        sudo cp -r magisk/overlay_rw /var/lib/waydroid/
-        if [ $a = "2" ]; then
-            sudo cp -r magisk/data_modules/* ~/.local/share/waydroid/data/
+    if [ -f magisk.tar.gz ]; then
+        rm_magisk
+        sudo tar -xf magisk.tar.gz
+        sleep 0.3
+        echo "Copying files!"
+        if [ $ARCH = "x86_64" ]; then
+            sudo cp -r magisk/overlay /var/lib/waydroid/
+            sudo cp -r magisk/overlay_rw /var/lib/waydroid/
+            if [ $a = "2" ]; then
+                sudo cp -r magisk/data_modules/* ~/.local/share/waydroid/data/
+            else
+                sudo cp -r magisk/data ~/.local/share/waydroid/
+            fi
         else
+            sudo cp -r magisk/overlay /var/lib/waydroid/
             sudo cp -r magisk/data ~/.local/share/waydroid/
         fi
+        sleep 0.3
+        sudo rm -rf magisk magisk.tar.gz
     else
-        sudo cp -r magisk/overlay /var/lib/waydroid/
-        sudo cp -r magisk/data ~/.local/share/waydroid/
+        echo "Sorry but the magisk couldn't be downloaded, please try again later!"
     fi
-    sleep 0.3
-    sudo rm -rf magisk magisk.tar.gz
 }
 
 function waydroid_up() {
@@ -132,14 +137,14 @@ function install() {
     if [[ $a = "1" || $a = "2" ]]; then
         waydroid_down
         sleep 0.3
-        rm_magisk
-        sleep 0.3
         resize_images
         sleep 0.3
         install_magisk
         waydroid_up
         sleep 0.5
-        echo "Installation has finished, now start up waydroid and after waydroid fully boots and If magisk was successfully installed then just simply reboot your Waydroid or proceed direct install to system through Magisk app. Enjoy Magisk <3"
+        if [ -f magisk.tar.gz ]; then
+            echo "Installation has finished, now start up waydroid and after waydroid fully boots and If magisk was successfully installed then just simply reboot your Waydroid or proceed direct install to system through Magisk app. Enjoy Magisk <3"
+        fi
         rm -rf init.txt
     elif [ $a = "3" ]; then
         echo "Aborting!"
