@@ -37,8 +37,9 @@ Please kindly read everything here and follow insctructions, or It might not wor
  If you have been installing magisk from nitanmarcel script, make sure you run: "sudo waydroid_magisk remove", before installing this script! Althought, now this script should remove all conflicting files.
  ```shell
 git clone https://github.com/mistrmochov/magiskWaydroid
+cd magiskWaydroid
 chmod +x magiskinstall.sh
-./magiskinstall.sh ("DO NOT RUN AS ROOT OR SUDO, or it wont work, but when you are prompted for sudo password put it there of course!")
+./magiskinstall.sh #("DO NOT RUN AS ROOT OR SUDO, or it wont work, but when you are prompted for sudo password put it there of course!")
 ```
  Option 1 is for normal Magisk Delta install.
 
