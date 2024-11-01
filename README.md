@@ -47,7 +47,7 @@ cd magiskWaydroid
 ./magisk remove # This option will completely remove Magisk from your Waydroid
 ./magisk reset # This option will restore Magisk to its original state and remove all modules.
 ```
-If you intend to use the script in the future, I recommend to place the script in /usr/bin or ~/.local/share/bin, You can then run it directly in your shell from anywhere. Make sure It has executable permissions.
+If you intend to use the script in the future, I recommend to place the script in /usr/bin or ~/.local/bin, You can then run it directly in your shell from anywhere. Make sure It has executable permissions.
 
 
  IMPORTANT: After script installation start up the Waydroid and after It boots up, check If Magisk was installed, If yes then please restart your Waydroid to complete the installation proccess or you can also proceed with direct install to system through Magisk app.
