@@ -1,0 +1,179 @@
+#!/bin/bash
+SYSTEM=$(cat /var/lib/waydroid/waydroid.cfg | grep images_path | cut -d' ' -f 3)/system.img
+VENDOR=$(cat /var/lib/waydroid/waydroid.cfg | grep images_path | cut -d' ' -f 3)/vendor.img
+ARCH=$(cat /var/lib/waydroid/waydroid.cfg | grep arch | cut -d' ' -f 3)
+arg1=""
+arg2=""
+if ! [ -z "$1" ]; then
+    arg1="$1"
+fi
+if ! [ -z "$2" ]; then
+    arg2="$2"
+fi
+function prep() {
+    echo "Hi, welcome to simple Magisk Delta installer for Waydroid"
+    if ! [[ $ARCH = "x86_64" || $ARCH = "arm64" ]]; then
+        echo "Sorry but," $ARCH "is not supported yet, by this script! Quitting."
+        exit
+    fi
+
+}
+
+function waydroid_down() {
+    echo "Stopping waydroid!"
+    waydroid session stop
+    sudo waydroid container stop
+    if grep -Fxq "runit" /tmp/init.txt; then
+        sudo sv down waydroid-container
+    else
+        sudo systemctl stop waydroid-container.service
+    fi
+}
+
+function rm_magisk() {
+    echo "Removing any previous installation of Magisk"
+    sudo rm -rf ~/.local/share/waydroid/data/adb/lspd
+    sudo rm -rf ~/.local/share/waydroid/data/adb/magisk
+    sudo rm -rf ~/.local/share/waydroid/data/adb/magisk.db
+    sudo rm -rf ~/.local/share/waydroid/data/adb/post-fs-data.d
+    sudo rm -rf ~/.local/share/waydroid/data/adb/service.d
+    sudo rm -rf ~/.local/share/waydroid/data/data/io.github.huskydg.magisk
+    sudo rm -rf ~/.local/share/waydroid/data/data/io.github.huskydg.magisk.png
+    sudo rm -rf /var/lib/waydroid/overlay/sbin/*
+    sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc
+    sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc.gz
+    sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/magisk
+    sudo rm -rf /var/lib/waydroid/overlay/system/addon.d
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/sbin/.magisk
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc.gz
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/magisk
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/addon.d
+    sudo rm -rf /var/lib/waydroid/overlay_rw/vendor/etc/selinux/*
+}
+
+function del_magisk() {
+    echo "Removing Magisk!"
+    sudo rm -rf ~/.local/share/waydroid/data/adb/lspd
+    sudo rm -rf ~/.local/share/waydroid/data/adb/magisk
+    sudo rm -rf ~/.local/share/waydroid/data/adb/magisk.db
+    sudo rm -rf ~/.local/share/waydroid/data/adb/modules
+    sudo rm -rf ~/.local/share/waydroid/data/adb/post-fs-data.d
+    sudo rm -rf ~/.local/share/waydroid/data/adb/service.d
+    sudo rm -rf ~/.local/share/waydroid/data/data/io.github.huskydg.magisk
+    sudo rm -rf ~/.local/share/waydroid/data/data/io.github.huskydg.magisk.png
+    sudo rm -rf /var/lib/waydroid/overlay/sbin/*
+    sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc
+    sudo gzip -dk /var/lib/waydroid/overlay/system/etc/init/bootanim.rc.gz
+    sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/magisk
+    sudo rm -rf /var/lib/waydroid/overlay/system/addon.d
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/sbin/.magisk
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/bootanim.rc.gz
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/magisk
+    sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/addon.d
+    sudo rm -rf /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy
+    sudo gzip -dk /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy.gz
+}
+
+function res_magisk() {
+    echo "Reseting Magisk and removing all modules!"
+    sudo rm -rf ~/.local/share/waydroid/data/adb/lspd
+    sudo rm -rf ~/.local/share/waydroid/data/adb/magisk.db
+    sudo rm -rf ~/.local/share/waydroid/data/adb/modules
+    sudo rm -rf ~/.local/share/waydroid/data/adb/post-fs-data.d
+    sudo rm -rf ~/.local/share/waydroid/data/adb/service.d
+}
+
+function resize_images() {
+    echo "Resizing images"
+    sudo e2fsck -yf $SYSTEM
+    sudo resize2fs $SYSTEM 3G
+    sudo e2fsck -yf $VENDOR
+    sudo resize2fs $VENDOR 1G
+}
+
+function install_magisk() {
+    echo "Downloading magisk"
+    if [ $ARCH = "arm64" ]; then
+        wget -q https://storage.googleapis.com/mistrmochov/magiskWaydroid/magiskarm64_1.0.tar.gz -O /tmp/magisk.tar.gz
+    else
+        wget -q https://storage.googleapis.com/mistrmochov/magiskWaydroid/magisk_1.0.tar.gz -O /tmp/magisk.tar.gz
+    fi
+    echo "Unpacking magisk"
+    if [ -f /tmp/magisk.tar.gz ]; then
+        rm_magisk
+        sudo tar -xf /tmp/magisk.tar.gz -C /tmp
+        echo "Copying files!"
+        if [ $ARCH = "x86_64" ]; then
+            sudo cp -r /tmp/magisk/overlay /var/lib/waydroid/
+            sudo cp -r /tmp/magisk/overlay_rw /var/lib/waydroid/
+            if [[ "$arg2" = "--modules" || "$arg1" = "--modules" ]]; then
+                sudo cp -r /tmp/magisk/data_modules/* ~/.local/share/waydroid/data/
+            else
+                sudo cp -r /tmp/magisk/data ~/.local/share/waydroid/
+            fi
+        else
+            sudo cp -r /tmp/magisk/overlay /var/lib/waydroid/
+            sudo cp -r /tmp/magisk/data ~/.local/share/waydroid/
+        fi
+        sudo rm -rf /tmp/magisk /tmp/magisk.tar.gz
+    else
+        echo "Sorry but the magisk couldn't be downloaded, please try again later!"
+    fi
+}
+
+function waydroid_up() {
+    echo "Starting waydroid-container.service"
+    if grep -Fxq "runit" /tmp/init.txt; then
+        sudo sv up waydroid-container
+    else
+        sudo systemctl start waydroid-container.service
+    fi
+}
+
+function install() {
+    touch /tmp/init.txt
+    ps -p 1 -o command >/tmp/init.txt
+    waydroid_down
+    resize_images
+    install_magisk
+    waydroid_up
+    echo "Installation has finished, now start up waydroid and after waydroid fully boots and If magisk was successfully installed then just simply reboot your Waydroid or proceed direct install to system through Magisk app. Enjoy Magisk <3"
+    rm /tmp/init.txt
+}
+
+function promt() {
+    if [ "$arg1" = "" ]; then
+        echo "Please provide an argument: install/install --modules/remove/reset"
+    else
+        if [ "$arg1" = "install" ]; then
+            install
+        elif [ "$arg1" = "--modules" ]; then
+            if [ "$arg2" = "install" ]; then
+                install
+            else
+                echo "Bad arguments"
+            fi
+        elif [[ "$arg1" = "remove" || "$arg1" = "reset" ]]; then
+            touch /tmp/init.txt
+            ps -p 1 -o command >/tmp/init.txt
+            waydroid_down
+            if [ "$arg1" = "reset" ]; then
+                res_magisk
+                echo "Magisk has been restored."
+            else
+                del_magisk
+                echo "Magisk has been removed."
+            fi
+            waydroid_up
+            rm -rf /tmp/init.txt
+        else
+            echo "Bad arguments"
+        fi
+    fi
+}
+
+prep
+promt
+echo "Quitting"
