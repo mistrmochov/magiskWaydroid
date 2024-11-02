@@ -42,9 +42,17 @@ Please kindly read everything here and follow insctructions, or It might not wor
  ```shell
 git clone https://github.com/mistrmochov/magiskWaydroid
 cd magiskWaydroid
+```
+ ```shell
 ./magisk install # This option will install Magisk
+```
+ ```shell
 ./magisk install --modules # This option will install Magisk with mentioned modules.
+```
+ ```shell
 ./magisk remove # This option will completely remove Magisk from your Waydroid
+```
+ ```shell
 ./magisk reset # This option will restore Magisk to its original state and remove all modules.
 ```
 If you intend to use the script in the future, I recommend to place the script in /usr/bin or ~/.local/bin, You can then run it directly in your shell from anywhere. Make sure It has executable permissions.
