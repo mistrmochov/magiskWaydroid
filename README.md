@@ -67,5 +67,5 @@ If you intend to use the script in the future, I recommend to place the script i
  
  Now this script supports x86_64 and arm64 archs.
  
- If you're using Archlinux based distros you need linux-xanmod-anbox kernel and its header and also you need to put 'psi=1' (without quotes) to your kernel cmdline or Magisk won't work at all! You can compile and install this kernel from AUR: https://aur.archlinux.org/packages/linux-xanmod-anbox , https://aur.archlinux.org/packages/linux-xanmod-anbox-headers . Or you can install compiled kernel from chaotic aur chinese repository: https://archlinux.pkgs.org/rolling/archlinuxcn-x86_64/linux-xanmod-anbox-6.7.10-1-x86_64.pkg.tar.zst.html , https://archlinux.pkgs.org/rolling/archlinuxcn-x86_64/linux-xanmod-anbox-headers-6.7.10-1-x86_64.pkg.tar.zst.html .
+ If you're using Archlinux based distros appearently, you don't need linux-xanmod-anbox kernel anymore. You can go with linux-zen and It's header, which is official from Arch repos. Magisk is now working fine with this kernel :)
 
