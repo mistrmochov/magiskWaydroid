@@ -16,7 +16,7 @@ Please kindly read everything here and follow insctructions, or It might not wor
 
 **The script has now been changed and works little differently, So please follow the instructions below!**
 
-![installedmagisk](https://storage.googleapis.com/mistrmochov/magiskWaydroid/installedmagisk.png)
+![installedmagisk](https://storage.googleapis.com/mistrmochov-x/magiskWaydroid/installedmagisk.png)
 
 **Purpose of this script.**
 

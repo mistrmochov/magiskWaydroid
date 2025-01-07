@@ -96,9 +96,9 @@ function resize_images() {
 function install_magisk() {
     echo "Downloading magisk"
     if [ $ARCH = "arm64" ]; then
-        wget -q https://storage.googleapis.com/mistrmochov/magiskWaydroid/magiskarm64_1.0.tar.gz -O /tmp/magisk.tar.gz
+        wget -q https://storage.googleapis.com/mistrmochov-x/magiskWaydroid/magiskarm64_1.0.tar.gz -O /tmp/magisk.tar.gz
     else
-        wget -q https://storage.googleapis.com/mistrmochov/magiskWaydroid/magisk_1.0.tar.gz -O /tmp/magisk.tar.gz
+        wget -q https://storage.googleapis.com/mistrmochov-x/magiskWaydroid/magisk_1.0.tar.gz -O /tmp/magisk.tar.gz
     fi
     echo "Unpacking magisk"
     if [ -f /tmp/magisk.tar.gz ]; then
