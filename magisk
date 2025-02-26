@@ -23,9 +23,9 @@ function waydroid_down() {
     echo "Stopping waydroid!"
     waydroid session stop
     sudo waydroid container stop
-    if grep -Fxq "runit" /tmp/init.txt; then
+    if command -v sv >/dev/null 2>&1; then
         sudo sv down waydroid-container
-    else
+    elif command -v systemctl >/dev/null 2>&1; then
         sudo systemctl stop waydroid-container.service
     fi
 }
@@ -125,22 +125,19 @@ function install_magisk() {
 
 function waydroid_up() {
     echo "Starting waydroid-container.service"
-    if grep -Fxq "runit" /tmp/init.txt; then
+    if command -v sv >/dev/null 2>&1; then
         sudo sv up waydroid-container
-    else
+    elif command -v systemctl >/dev/null 2>&1; then
         sudo systemctl start waydroid-container.service
     fi
 }
 
 function install() {
-    touch /tmp/init.txt
-    ps -p 1 -o command >/tmp/init.txt
     waydroid_down
     resize_images
     install_magisk
     waydroid_up
     echo "Installation has finished, now start up waydroid and after waydroid fully boots and If magisk was successfully installed then just simply reboot your Waydroid or proceed direct install to system through Magisk app. Enjoy Magisk <3"
-    rm /tmp/init.txt
 }
 
 function promt() {
@@ -156,8 +153,6 @@ function promt() {
                 echo "Bad arguments"
             fi
         elif [[ "$arg1" = "remove" || "$arg1" = "reset" ]]; then
-            touch /tmp/init.txt
-            ps -p 1 -o command >/tmp/init.txt
             waydroid_down
             if [ "$arg1" = "reset" ]; then
                 res_magisk
@@ -167,7 +162,6 @@ function promt() {
                 echo "Magisk has been removed."
             fi
             waydroid_up
-            rm -rf /tmp/init.txt
         else
             echo "Bad arguments"
         fi
