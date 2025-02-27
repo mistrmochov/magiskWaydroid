@@ -96,7 +96,7 @@ function resize_images() {
 function install_magisk() {
     echo "Downloading magisk"
     if [ $ARCH = "arm64" ]; then
-        wget -q https://storage.googleapis.com/mistrmochov-x/magiskWaydroid/magiskarm64_1.0.tar.gz -O /tmp/magisk.tar.gz
+        wget -q https://storage.googleapis.com/mistrmochov-x/magiskWaydroid/magiskarm64_1.1.tar.gz -O /tmp/magisk.tar.gz
     else
         wget -q https://storage.googleapis.com/mistrmochov-x/magiskWaydroid/magisk_1.0.tar.gz -O /tmp/magisk.tar.gz
     fi
@@ -105,16 +105,11 @@ function install_magisk() {
         rm_magisk
         sudo tar -xf /tmp/magisk.tar.gz -C /tmp
         echo "Copying files!"
-        if [ $ARCH = "x86_64" ]; then
-            sudo cp -r /tmp/magisk/overlay /var/lib/waydroid/
-            sudo cp -r /tmp/magisk/overlay_rw /var/lib/waydroid/
-            if [[ "$arg2" = "--modules" || "$arg1" = "--modules" ]]; then
-                sudo cp -r /tmp/magisk/data_modules/* ~/.local/share/waydroid/data/
-            else
-                sudo cp -r /tmp/magisk/data ~/.local/share/waydroid/
-            fi
+        sudo cp -r /tmp/magisk/overlay /var/lib/waydroid/
+        sudo cp -r /tmp/magisk/overlay_rw /var/lib/waydroid/
+        if [[ "$arg2" = "--modules" || "$arg1" = "--modules" ]]; then
+            sudo cp -r /tmp/magisk/data_modules/* ~/.local/share/waydroid/data/
         else
-            sudo cp -r /tmp/magisk/overlay /var/lib/waydroid/
             sudo cp -r /tmp/magisk/data ~/.local/share/waydroid/
         fi
         sudo rm -rf /tmp/magisk /tmp/magisk.tar.gz
