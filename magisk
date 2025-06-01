@@ -64,7 +64,7 @@ function del_magisk() {
     sudo rm -rf ~/.local/share/waydroid/data/data/io.github.huskydg.magisk.png
     sudo rm -rf /var/lib/waydroid/overlay/sbin/*
     sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc
-    sudo gzip -dk /var/lib/waydroid/overlay/system/etc/init/bootanim.rc.gz
+    sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/bootanim.rc.gz
     sudo rm -rf /var/lib/waydroid/overlay/system/etc/init/magisk
     sudo rm -rf /var/lib/waydroid/overlay/system/addon.d
     sudo rm -rf /var/lib/waydroid/overlay_rw/system/sbin/.magisk
@@ -73,7 +73,7 @@ function del_magisk() {
     sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/etc/init/magisk
     sudo rm -rf /var/lib/waydroid/overlay_rw/system/system/addon.d
     sudo rm -rf /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy
-    sudo gzip -dk /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy.gz
+    sudo rm -rf /var/lib/waydroid/overlay_rw/vendor/etc/selinux/precompiled_sepolicy.gz
 }
 
 function res_magisk() {
