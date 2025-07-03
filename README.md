@@ -1,5 +1,14 @@
 # magiskWaydroid
 __________________________________________________________________________________________________________________________________________________________________________________________
+
+**DISCONTINUED**
+
+This project has been discontinued and will no longer recieve any updates, because I have create a new project for Magisk managment on Waydroid.
+
+I have made a fork of latest KitsuneMagisk and made small patches to make it working with Waydroid once again. As a follow up to this, I've written full CLI Magisk installer and manager for Waydroid in Rust, which uses this patched version of KitsuneMagisk. Please give this project a try: https://github.com/mistrmochov/WaydroidSU
+
+If you wish to continue using this project, you can. It will not be removed.
+
 Changelog:
 
 (V - 0.8): Added arm64 support, but I don't have any arm device, So I was not able to test It. So If you anyone will be using arm version, please let me know, If it works :)
